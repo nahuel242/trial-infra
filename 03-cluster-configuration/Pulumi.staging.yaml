@@ -1,0 +1,4 @@
+config:
+  aws:region: us-east-1
+  k8s-aws-cluster:identityStackRef: nahuel242/k8s-aws-identity/staging
+  k8s-aws-cluster:infraStackRef: nahuel242/k8s-aws-infra/staging
