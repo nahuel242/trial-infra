@@ -19,6 +19,9 @@ export const config = {
     publicSubnetIds: infraStackRef.getOutput("publicSubnetIds"),
     privateSubnetIds: infraStackRef.getOutput("privateSubnetIds"),
 
+    // ACM Certificate for ingress controller
+    acmCertificate: pulumiConfig.get("acmCertificate")
+
     /*
     defaultVpcId: infraStackRef.getOutput("defaultVpcId"),
     defaultPublicSubnetIds: infraStackRef.getOutput("defaultPublicSubnetIds"),

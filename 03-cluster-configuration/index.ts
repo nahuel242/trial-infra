@@ -144,7 +144,24 @@ const nginx = new k8s.helm.v3.Chart("nginx",
         chart: "nginx-ingress",
         version: "1.24.4",
         fetchOpts: {repo: "https://charts.helm.sh/stable/"},
-        values: {controller: {publishService: {enabled: true}}},
+        values: {
+            controller: {
+                publishService: {enabled: true},
+                service: {
+                    targetPorts: {
+                        http: "http",
+                        https: "http"
+                    },
+                    annotations: {
+                        "service.beta.kubernetes.io/aws-load-balancer-ssl-cert": config.acmCertificate,
+                        "service.beta.kubernetes.io/aws-load-balancer-backend-protocol": "http",
+                        "service.beta.kubernetes.io/aws-load-balancer-ssl-ports": "https",
+                        "service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout": '3600'
+                    }
+
+                }
+            }
+        },
         transformations: [
             (obj: any) => {
                 // Do transformations on the YAML to set the namespace
@@ -158,4 +175,6 @@ const nginx = new k8s.helm.v3.Chart("nginx",
         provider: cluster.provider
     },
 );
+
+
 
