@@ -1,4 +1,5 @@
 config:
   aws:region: us-east-1
+  k8s-aws-cluster:acmCertificate: arn:aws:acm:us-east-1:670927678896:certificate/54e80afc-fcec-46f0-9b08-8b9b2c9a2810
   k8s-aws-cluster:identityStackRef: nahuel242/k8s-aws-identity/staging
   k8s-aws-cluster:infraStackRef: nahuel242/k8s-aws-infra/staging
